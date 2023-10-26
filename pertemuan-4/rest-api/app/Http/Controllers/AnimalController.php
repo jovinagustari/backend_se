@@ -35,15 +35,36 @@ class AnimalController extends Controller
     }
 
     public function update(Request $request, $id) {
-        echo "Mengupdate data animals id $id";
-        $this->animals[$index] = $request->nama;
-        // echo "Nama hewan : $request->nama";
+        // echo "Nama hewan : ", $this->animals[$index] = $request->nama;
         // echo "<br>";
         // echo "Mengupdate data animals id $id";
+        // echo "<br>";
+        // $this->index();
+
+        $index = $id - 1;
+
+        if (isset($this->animals[$index])) {
+            $this->animals[$index] = $request->nama;
+            echo "Nama hewan : " . $this->animals[$index];
+            echo "<br>";
+            echo "Mengupdate data animals id $id";
+        } else {
+            echo "Hewan dengan $id tidak ditemukan.";
+        }
+        echo "<br>";
+        $this->index();
     }
 
     public function destroy($id) {
-        array_splice($this->animals, $index, 1);
-        // echo "Menghapus data animals id $id";
+        $index = $id - 1; 
+
+        if (isset($this->animals[$index])) {
+            array_splice($this->animals, $index, 1);
+            echo "Menghapus data animals id $id";
+        } else {
+            echo "Hewan dengan $id tidak ditemukan.";
+        }
+        echo "<br>";
+        $this->index();
     }
 }
