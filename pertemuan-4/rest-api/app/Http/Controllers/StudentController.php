@@ -76,24 +76,26 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // menangkap data request
-        $input = [
-            'nama' => $request->nama,
-            'nim' => $request->nim,
-            'email' => $request->email,
-            'jurusan' => $request->jurusan
-        ];
+        $student = Student::find($id);
 
-        // menggunakan model student untuk insert data
-        $student = Student::update($input);
-
+        // cek data student
+        if (!$student) {
+            return response()->json(['message' => 'Student not found'], 404);
+        }
+    
+        // Update data student
+        $student->nama = $request->nama;
+        $student->nim = $request->nim;
+        $student->email = $request->email;
+        $student->jurusan = $request->jurusan;
+        $student->save();
+    
         $data = [
             'message' => 'Student is updated successfully',
             'data' => $student,
         ];
-
-        // mengembalikan data (json) dan kode 201
-        return response()->json($data, 201);
+    
+        return response()->json($data, 200);
     }
 
     /**
@@ -101,23 +103,22 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        // menangkap data request
-        $input = [
-            'nama' => $request->nama,
-            'nim' => $request->nim,
-            'email' => $request->email,
-            'jurusan' => $request->jurusan
-        ];
+        // cari data students berdasarkan id
+        $student = Student::find($id);
 
-        // menggunakan model student untuk insert data
-        $student = Student::create($input);
+        // cek data student
+        if (!$student) {
+            return response()->json(['message' => 'Student not found'], 404);
+        }
 
-        $data = [
-            'message' => 'Student is created successfully',
-            'data' => $student,
+        // hapus data
+        $student->delete();
+
+        $message = [
+            'message' => 'Student is deleted successfully',
         ];
 
         // mengembalikan data (json) dan kode 201
-        return response()->json($data, 201);
+        return response()->json($message, 200);
     }
 }

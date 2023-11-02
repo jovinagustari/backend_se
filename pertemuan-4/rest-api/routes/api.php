@@ -44,8 +44,8 @@ Route::get('/students', [StudentController::class, 'index']);
 Route::post('/students', [StudentController::class, 'store']);
 
 // method put
-Route::put('/animals/{id}', [StudentController::class, 'update']);
+Route::put('/students/{id}', [StudentController::class, 'update']);
 
 // method delete
-Route::delete('/student/{id}', [StudentController::class, 'destroy']);
+Route::delete('/students/{id}', [StudentController::class, 'destroy']);
 // end route
