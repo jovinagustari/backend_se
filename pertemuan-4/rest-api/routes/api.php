@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\StudentController;
+use App\Models\Student;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Start Route for animals
 // method get
 Route::get('/animals', [AnimalController::class, 'index']);
 
@@ -31,3 +34,18 @@ Route::put('/animals/{id}', [AnimalController::class, 'update']);
 
 // method delete
 Route::delete('/animals/{id}', [AnimalController::class, 'destroy']);
+// end route
+
+// Start Route for students
+// method get
+Route::get('/students', [StudentController::class, 'index']);
+
+// method post
+Route::post('/students', [StudentController::class, 'store']);
+
+// method put
+Route::put('/animals/{id}', [StudentController::class, 'update']);
+
+// method delete
+Route::delete('/student/{id}', [StudentController::class, 'destroy']);
+// end route

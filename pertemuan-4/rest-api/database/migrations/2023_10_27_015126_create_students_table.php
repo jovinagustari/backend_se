@@ -10,8 +10,10 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    {   
+        // MEMBUAT TABLE
         Schema::create('students', function (Blueprint $table) {
+            // membuat kolom
             $table->id();
             $table->string('nama');
             $table->string('nim');
