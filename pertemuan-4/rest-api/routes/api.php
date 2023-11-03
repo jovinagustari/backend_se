@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\StudentController;
-use App\Models\Student;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,8 +44,11 @@ Route::get('/students', [StudentController::class, 'index']);
 Route::post('/students', [StudentController::class, 'store']);
 
 // method put
-Route::put('/animals/{id}', [StudentController::class, 'update']);
+Route::put('/students/{id}', [StudentController::class, 'update']);
 
 // method delete
-Route::delete('/student/{id}', [StudentController::class, 'destroy']);
+Route::delete('/students/{id}', [StudentController::class, 'destroy']);
+
+// method untuk mendapatkan detail data dengn GET
+Route::get('/students/{id}', [StudentController::class, 'show']);
 // end route
