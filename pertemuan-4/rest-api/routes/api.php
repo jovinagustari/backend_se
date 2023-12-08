@@ -52,3 +52,11 @@ Route::delete('/students/{id}', [StudentController::class, 'destroy']);
 // method untuk mendapatkan detail data dengn GET
 Route::get('/students/{id}', [StudentController::class, 'show']);
 // end route
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+// grouping 
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('students');
+});
